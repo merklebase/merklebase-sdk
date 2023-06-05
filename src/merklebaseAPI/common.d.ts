@@ -1,6 +1,6 @@
-interface Common {
+interface ICommon {
   supportedCurrencies: () => Promise<any>;
   supportedProviders: () => Promise<any>;
 }
 
-export { Common };
+export { ICommon };

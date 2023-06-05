@@ -1,5 +1,5 @@
-interface Tokens {
+interface ITokens {
   create: (userToken: string) => Promise<any>;
 }
 
-export { Tokens };
+export { ITokens };

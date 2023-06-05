@@ -1,20 +1,20 @@
-interface LinksKeys {
+interface ILinksKeys {
   api_key: string;
   api_secret: string;
   passphrase: string;
 }
 
-interface LinksGenerate {
+interface ILinksGenerate {
   ed25519: () => Promise<any>;
   rsacsr: () => Promise<any>;
 }
 
-interface Links {
+interface ILinks {
   get: (userToken: string) => Promise<any>;
-  connect: (userToken: string, linkKeys: LinksKeys) => Promise<any>;
+  connect: (userToken: string, linkKeys: ILinksKeys) => Promise<any>;
   disconnect: (userToken: string, linkId: string) => Promise<any>;
   refresh: (userToken: string, linkId: string) => Promise<any>;
-  generate: LinksGenerate;
+  generate: ILinksGenerate;
 }
 
-export { Links, LinksKeys, LinksGenerate };
+export { ILinks, ILinksKeys, ILinksGenerate };
