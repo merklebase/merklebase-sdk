@@ -1,5 +1,5 @@
 import { initCreateLinkComponent } from "./createLink.js";
-
+import ICreateLinkProps from "./Icreatelink.js";
 class MerklebaseUI {
   apiKey: string;
   url: string;
@@ -10,8 +10,22 @@ class MerklebaseUI {
   }
 
   links = {
-    connect: (callback: () => void) => {
-      initCreateLinkComponent({ callback, apiKey: this.apiKey, url: this.url });
+    connect: ({
+      token,
+      onSuccess,
+      onError,
+      onCancel,
+      apiKey,
+      url,
+    }: ICreateLinkProps) => {
+      initCreateLinkComponent({
+        onSuccess,
+        onError,
+        onCancel,
+        apiKey,
+        token,
+        url,
+      });
     },
   };
 }

@@ -1,11 +1,4 @@
-interface CreateLinkProps {
-  onSuccess: (data: any) => void;
-  onError: (data: any) => void;
-  onCancel: (data: any) => void;
-  apiKey: string;
-  token: string;
-  url: string;
-}
+import ICreateLinkProps from "./Icreatelink";
 
 export const initCreateLinkComponent = ({
   onSuccess,
@@ -14,7 +7,7 @@ export const initCreateLinkComponent = ({
   apiKey,
   token,
   url,
-}: CreateLinkProps) => {
+}: ICreateLinkProps) => {
   const iframeContainer = document.createElement("div");
   // iframeContainer.style =
   //   "position: absolute; top: 0; left: 0; width: 100%; height: 100%;";
@@ -24,7 +17,7 @@ export const initCreateLinkComponent = ({
   // createLink.style = "width: 100%; height: 100%; border: none;";
 
   createLink.onload = () => {
-    createLink.contentWindow.postMessage(
+    createLink.contentWindow?.postMessage(
       {
         credentials: {
           apiKey,
@@ -39,7 +32,7 @@ export const initCreateLinkComponent = ({
 
   document.body.appendChild(iframeContainer);
 
-  window.addEventListener("message", function (event) {
+  window.addEventListener("message", function(event) {
     console.log("HERE in message", event.data);
     if (event.data.type === "CONNECT_LINK_SUCCESS") {
       onSuccess(event.data);
