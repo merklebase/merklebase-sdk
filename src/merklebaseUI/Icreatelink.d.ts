@@ -1,10 +1,10 @@
 interface ICreateLinkProps {
-  onSuccess: (data: any) => void;
-  onError: (data: any) => void;
-  onCancel: (data: any) => void;
-  apiKey: string;
-  token: string;
-  url: string;
+  apiKey: string
+  token: string
+  url: string
+  onSuccess: (data: any) => void
+  onError: (data: any) => void
+  onCancel: (data: any) => void
 }
 
-export default ICreateLinkProps;
+export default ICreateLinkProps

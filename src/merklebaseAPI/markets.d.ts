@@ -1,5 +1,5 @@
 interface IMarkets {
-  prices: (userToken: string) => Promise<any>;
+  prices: (userToken: string) => Promise<any>
 }
 
-export { IMarkets };
+export { IMarkets }

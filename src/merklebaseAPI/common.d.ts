@@ -1,6 +1,6 @@
 interface ICommon {
-  supportedCurrencies: () => Promise<any>;
-  supportedProviders: () => Promise<any>;
+  supportedCurrencies: () => Promise<any>
+  supportedProviders: () => Promise<any>
 }
 
-export { ICommon };
+export { ICommon }

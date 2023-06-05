@@ -1,33 +1,28 @@
-import { initCreateLinkComponent } from "./createLink.js";
-import ICreateLinkProps from "./Icreatelink.js";
+import { initCreateLinkComponent } from './createLink.js'
+import ICreateLinkProps from './Icreatelink.js'
 class MerklebaseUI {
-  apiKey: string;
-  url: string;
+  apiKey: string
+  token: string
+  url: string
 
-  constructor(apiKey: string, url: string) {
-    this.apiKey = apiKey;
-    this.url = url;
+  constructor(apiKey: string, token: string, url: string = 'https://api.merklebase.io') {
+    this.apiKey = apiKey
+    this.token = token
+    this.url = url
   }
 
   links = {
-    connect: ({
-      token,
-      onSuccess,
-      onError,
-      onCancel,
-      apiKey,
-      url,
-    }: ICreateLinkProps) => {
+    connect: ({ apiKey, token, url, onSuccess, onError, onCancel }: ICreateLinkProps) => {
       initCreateLinkComponent({
-        onSuccess,
-        onError,
-        onCancel,
         apiKey,
         token,
         url,
-      });
+        onSuccess,
+        onError,
+        onCancel,
+      })
     },
-  };
+  }
 }
 
-export default MerklebaseUI;
+export default MerklebaseUI

@@ -1,5 +1,5 @@
 interface IBalances {
-  get: (userToken: string) => Promise<any>;
+  get: (userToken: string) => Promise<any>
 }
 
-export { IBalances };
+export { IBalances }

@@ -1,5 +1,5 @@
 interface IAccounts {
-  get: (userToken: string) => Promise<any>;
+  get: (userToken: string) => Promise<any>
 }
 
-export { IAccounts };
+export { IAccounts }
