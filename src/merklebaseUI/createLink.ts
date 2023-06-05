@@ -1,4 +1,14 @@
-export const initCreateLinkComponent = ({ callback, apiKey }) => {
+interface CreateLinkProps {
+  callback: (data: any) => void;
+  apiKey: string;
+  url: string;
+}
+
+export const initCreateLinkComponent = ({
+  callback,
+  apiKey,
+  url
+}: CreateLinkProps) => {
   window.addEventListener("message", function (event) {
     console.log("HERE in message", event.data);
     if (event.data.type === "SHEKET") {
@@ -8,15 +18,15 @@ export const initCreateLinkComponent = ({ callback, apiKey }) => {
   });
 
   const iframeContainer = document.createElement("div");
-  iframeContainer.style =
-    "position: absolute; top: 0; left: 0; width: 100%; height: 100%;";
+  // iframeContainer.style =
+  //   "position: absolute; top: 0; left: 0; width: 100%; height: 100%;";
 
   const createLink = document.createElement("iframe");
-  createLink.src = "http://localhost:3000";
-  createLink.style = "width: 100%; height: 100%; border: none;";
+  createLink.src = url;
+  // createLink.style = "width: 100%; height: 100%; border: none;";
 
   createLink.onload = () => {
-    createLink.contentWindow.postMessage(
+    createLink.contentWindow?.postMessage(
       {
         token: apiKey,
       },
