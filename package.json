@@ -1,6 +1,6 @@
 {
-  "name": "merklebasesdk",
-  "version": "1.0.0",
+  "name": "merklebase-sdk",
+  "version": "1.0.20",
   "description": "",
   "main": "index.js",
   "scripts": {
