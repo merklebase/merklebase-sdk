@@ -1,24 +1,26 @@
-import ICreateLinkProps from './Icreatelink'
-
 export const initCreateLinkComponent = ({
-  onSuccess,
-  onError,
-  onCancel,
   apiKey,
   token,
   url,
-}: ICreateLinkProps) => {
+  onSuccess,
+  onError,
+  onCancel,
+}: any) => {
   const iframeContainer = document.createElement('div')
-  // iframeContainer.style =
-  //   "position: absolute; top: 0; left: 0; width: 100%; height: 100%;";
+  iframeContainer.setAttribute(
+    'style',
+    'position: absolute; top: 0; left: 0; width: 100%; height: 100%;'
+  )
 
   const createLink = document.createElement('iframe')
-  createLink.src = url
-  // createLink.style = "width: 100%; height: 100%; border: none;";
+  createLink.src = 'https://connect.merklebase.io'
+  createLink.setAttribute('style', 'width: 100%; height: 100%; border: none;')
 
   createLink.onload = () => {
     createLink.contentWindow?.postMessage(
       {
+        type: 'CREDENTIALS',
+        url,
         credentials: {
           apiKey,
           userToken: token,
@@ -35,14 +37,15 @@ export const initCreateLinkComponent = ({
   window.addEventListener('message', function(event) {
     console.log('HERE in message', event.data)
     if (event.data.type === 'CONNECT_LINK_SUCCESS') {
+      iframeContainer.remove()
       onSuccess(event.data)
     } else if (event.data.type === 'CONNECT_LINK_ERROR') {
+      iframeContainer.remove()
       onError(event.data)
     } else if (event.data.type === 'CONNECT_LINK_CANCEL') {
+      iframeContainer.remove()
       onCancel(event.data)
     }
-
-    document.body.removeChild(iframeContainer)
   })
 }
 
