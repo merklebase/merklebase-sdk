@@ -1,12 +1,12 @@
 // Merklebase SDK
-import axios from 'axios'
-import { IAccounts } from './accounts'
-import { ILinks } from './links'
-import { IBalances } from './balances'
-import { IEntitiesParams, IEntities } from './entities'
-import { IMarkets } from './markets'
-import { ITokens } from './tokens'
-import { ICommon } from './common'
+import axios from "axios";
+import { IAccounts } from "./accounts";
+import { ILinks, ILinksProps } from "./links";
+import { IBalances } from "./balances";
+import { IEntitiesParams, IEntities } from "./entities";
+import { IMarkets } from "./markets";
+import { ITokens } from "./tokens";
+import { ICommon } from "./common";
 
 interface IMerklebase {
   accounts: IAccounts
@@ -51,56 +51,69 @@ class MerklebaseAPI implements IMerklebase {
       })
       return response.data
     },
-    connect: async (userToken: string, linkKeys) => {
-      const response = await axios.post(`${this.baseUrl}/links/connect`, {
+    connect: async (userToken: string, link: ILinksProps) => {
+      const response = await axios.post(`${this.baseUrl}/links/connect`, link, {
         headers: {
           authorization: this.ApiKey,
           token: userToken,
         },
-        data: linkKeys,
-      })
-      return response.data
+      });
+      return response.data;
     },
     disconnect: async (userToken: string, linkId: string) => {
-      const response = await axios.post(`${this.baseUrl}/links/disconnect`, {
-        headers: {
-          authorization: this.ApiKey,
-          token: userToken,
-        },
-        data: {
+      const response = await axios.post(
+        `${this.baseUrl}/links/disconnect`,
+        {
           link_id: linkId,
         },
-      })
-      return response.data
+        {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
+          },
+        }
+      );
+      return response.data;
     },
     refresh: async (userToken: string, linkId: string) => {
-      const response = await axios.post(`${this.baseUrl}/links/refresh`, {
-        headers: {
-          authorization: this.ApiKey,
-          token: userToken,
+      const response = await axios.post(
+        `${this.baseUrl}/links/refresh`,
+        {
+          integrationId: [linkId],
         },
-        data: {
-          link_id: linkId,
-        },
-      })
-      return response.data
+        {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
+          },
+        }
+      );
+      return response.data;
     },
     generate: {
       ed25519: async () => {
-        const response = await axios.post(`${this.baseUrl}/links/generate/ed25519`, {
-          headers: {
-            authorization: this.ApiKey,
-          },
-        })
-        return response.data
+        const response = await axios.post(
+          `${this.baseUrl}/links/generate/ed25519`,
+          {},
+          {
+            headers: {
+              authorization: this.ApiKey,
+            },
+          }
+        );
+        return response.data;
       },
       rsacsr: async () => {
-        const response = await axios.post(`${this.baseUrl}/links/generate/rsacsr`, {
-          headers: {
-            authorization: this.ApiKey,
-          },
-        })
-        return response.data
+        const response = await axios.post(
+          `${this.baseUrl}/links/generate/rsacsr`,
+          {},
+          {
+            headers: {
+              authorization: this.ApiKey,
+            },
+          }
+        );
+        return response.data;
       },
     },
   }
@@ -128,39 +141,58 @@ class MerklebaseAPI implements IMerklebase {
       return response.data
     },
     create: async (userToken: string, entity: IEntitiesParams) => {
-      const response = await axios.post(`${this.baseUrl}/entities/create`, {
-        headers: {
-          authorization: this.ApiKey,
-          token: userToken,
-        },
-        data: entity,
-      })
-      return response.data
-    },
-    update: async (userToken: string, entityId: string, entity: IEntitiesParams) => {
-      const response = await axios.post(`${this.baseUrl}/entities/update`, {
-        headers: {
-          authorization: this.ApiKey,
-          token: userToken,
-        },
-        data: {
-          entity_id: entityId,
-          ...entity,
-        },
-      })
-      return response.data
+      const response = await axios.post(
+        `${this.baseUrl}/entities/create`,
+        entity,
+        {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
+          },
+        }
+      );
+      return response.data;
     },
     remove: async (userToken: string, entityId: string) => {
       const response = await axios.post(`${this.baseUrl}/entities/remove`, {
         headers: {
           authorization: this.ApiKey,
           token: userToken,
+    update: async (
+      userToken: string,
+      entityId: string,
+      entity: IEntitiesParams
+    ) => {
+      const response = await axios.post(
+        `${this.baseUrl}/entities/update`,
+        {
+          entity_id: entityId,
+          ...entity,
         },
         data: {
+        {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
+          },
+        }
+      );
+      return response.data;
+    },
+    remove: async (userToken: string, entityId: string) => {
+      const response = await axios.post(
+        `${this.baseUrl}/entities/remove`,
+        {
           entity_id: entityId,
         },
-      })
-      return response.data
+        {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
+          },
+        }
+      );
+      return response.data;
     },
   }
 
@@ -177,14 +209,17 @@ class MerklebaseAPI implements IMerklebase {
   }
 
   tokens: ITokens = {
-    create: async (userToken: string) => {
-      const response = await axios.post(`${this.baseUrl}/tokens/create`, {
-        headers: {
-          authorization: this.ApiKey,
-          token: userToken,
-        },
-      })
-      return response.data
+    create: async () => {
+      const response = await axios.post(
+        `${this.baseUrl}/tokens/create`,
+        {},
+        {
+          headers: {
+            authorization: this.ApiKey,
+          },
+        }
+      );
+      return response.data;
     },
   }
 
