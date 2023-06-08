@@ -130,7 +130,8 @@ Here's an example that demonstrates how to use multiple methods from the Merkleb
 
 ### Example 1: Retrieve Supported Currencies
 
-```import MerklebaseAPI from 'merklebase-sdk';
+```
+import { MerklebaseAPI } from 'merklebase-sdk';
 
 // Initialize the SDK with your API key
 const apiKey = 'YOUR_API_KEY';
