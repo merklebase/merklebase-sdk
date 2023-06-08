@@ -23,7 +23,7 @@ To use the Merklebase SDK, follow these steps:
 To start using the Merklebase SDK, import the SDK and initialize it with your API key. Here's an example of how to use the SDK:
 
 ```
-import MerklebaseAPI from 'merklebase-sdk';
+import { MerklebaseAPI } from 'merklebase-sdk';
 
 // Initialize the SDK with your API key
 const apiKey = 'YOUR_API_KEY';
