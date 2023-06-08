@@ -148,3 +148,55 @@ async function retrieveSupportedCurrencies() {
 
 retrieveSupportedCurrencies();
 ```
+
+### Example 2: Create an Entity
+
+```
+import { MerklebaseAPI } from 'merklebase-sdk';
+
+// Initialize the SDK with your API key
+const apiKey = 'YOUR_API_KEY';
+const merklebase = new MerklebaseAPI(apiKey);
+
+async function createEntity() {
+  const userToken = 'USER_TOKEN';
+  const newEntity = {
+    name: 'New Entity',
+    description: 'A newly created entity',
+    location: 'Somewhere',
+    accounts: ['account1', 'account2'],
+  };
+
+  try {
+    const { entity } = await merklebase.entities.create(userToken, newEntity);
+    console.log('Created Entity:', entity);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+createEntity();
+```
+
+## Example 3: Get Account Balances
+
+```
+import { MerklebaseAPI } from 'merklebase-sdk';
+
+// Initialize the SDK with your API key
+const apiKey = 'YOUR_API_KEY';
+const merklebase = new MerklebaseAPI(apiKey);
+
+async function getAccountBalances() {
+  const userToken = 'USER_TOKEN';
+
+  try {
+    const balances = await merklebase.balances.get(userToken);
+    console.log('Account Balances:', balances);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+getAccountBalances();
+```
