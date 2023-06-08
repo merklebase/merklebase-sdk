@@ -46,79 +46,79 @@ The Merklebase SDK provides the following interfaces and methods:
 
 ### Accounts
 
-`get(userToken: string): Promise<any>:`
+`get(userToken: string)`
 
 Retrieves the accounts associated with the user.
 
 ### Balances
 
-`get(userToken: string): Promise<any>:`
+`get(userToken: string)`
 
 Retrieves the balances of the user's accounts.
 
 ### Common
 
-`supportedCurrencies(): Promise<any>:`
+`supportedCurrencies()`
 
 Retrieves the list of supported currencies.
 
-`supportedProviders(): Promise<any>:`
+`supportedProviders()`
 
 Retrieves the list of supported providers.
 
 ### Entities
 
-`get(userToken: string): Promise<any>`
+`get(userToken: string)`
 
 Retrieves the entities associated with the user.
 
-`create(userToken: string, entity: IEntitiesParams): Promise<any>`
+`create(userToken: string, entity: IEntitiesParams)`
 
 Creates a new entity.
 
-`update(userToken: string, id: string, entity: IEntitiesParams): Promise<any>`
+`update(userToken: string, id: string, entity: IEntitiesParams)`
 
 Updates an existing entity.
 
-`remove(userToken: string, id: string): Promise<any>:`
+`remove(userToken: string, id: string)`
 
 Removes an entity.
 
 ### Links
 
-`get(userToken: string): Promise<any>`
+`get(userToken: string)`
 
 Retrieves the links associated with the user.
 
-`connect(userToken: string, link: ILinksProps): Promise<any>`
+`connect(userToken: string, link: ILinksProps)`
 
 Connects a link to the user's account.
 
-`disconnect(userToken: string, id: string): Promise<any>`
+`disconnect(userToken: string, id: string)`
 
 Disconnects a link from the user's account.
 
-`refresh(userToken: string, id: string): Promise<any>`
+`refresh(userToken: string, id: string)`
 
 Refreshes a link's data.
 
-`generate.ed25519(): Promise<any>`
+`generate.ed25519()`
 
 Generates an ed25519 link.
 
-`generate.rsacsr(): Promise<any>`
+`generate.rsacsr()`
 
 Generates an rsacsr link.
 
 ### Markets
 
-`prices(userToken: string): Promise<any>`
+`prices(userToken: string)`
 
 Retrieves market prices.
 
 ### Tokens
 
-`create(userToken: string): Promise<any>`
+`create(userToken: string)`
 
 Creates a new token.
 
