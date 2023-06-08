@@ -1,6 +1,6 @@
 {
   "name": "merklebase-sdk",
-  "version": "1.0.62",
+  "version": "1.0.66",
   "description": "Merklebase SDK",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
