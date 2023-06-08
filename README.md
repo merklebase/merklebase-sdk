@@ -149,7 +149,7 @@ async function retrieveSupportedCurrencies() {
 retrieveSupportedCurrencies();
 ```
 
-## Example 2: Get Account Balances
+### Example 2: Get Account Balances
 
 ```
 import { MerklebaseAPI } from 'merklebase-sdk';
