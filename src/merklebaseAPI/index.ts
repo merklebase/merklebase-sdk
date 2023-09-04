@@ -101,7 +101,7 @@ class MerklebaseAPI implements IMerklebase {
   links: ILinks = {
     get: async (userToken: string) => {
       try {
-        const response = await axios.get(`${this.baseUrl}/links/get`, {
+        const response = await axios.get(`${this.baseUrl}/links`, {
           headers: {
             authorization: this.ApiKey,
             token: userToken,
@@ -114,7 +114,7 @@ class MerklebaseAPI implements IMerklebase {
     },
     connect: async (userToken: string, link: ILinksProps) => {
       try {
-        const response = await axios.post(`${this.baseUrl}/links/connect`, link, {
+        const response = await axios.post(`${this.baseUrl}/links`, link, {
           headers: {
             authorization: this.ApiKey,
             token: userToken,
@@ -127,18 +127,12 @@ class MerklebaseAPI implements IMerklebase {
     },
     disconnect: async (userToken: string, id: string) => {
       try {
-        const response = await axios.post(
-          `${this.baseUrl}/links/disconnect`,
-          {
-            id,
+        const response = await axios.delete(`${this.baseUrl}/links/${id}`, {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
           },
-          {
-            headers: {
-              authorization: this.ApiKey,
-              token: userToken,
-            },
-          }
-        )
+        })
         return response.data
       } catch (error) {
         return error
@@ -146,18 +140,12 @@ class MerklebaseAPI implements IMerklebase {
     },
     refresh: async (userToken: string, id: string) => {
       try {
-        const response = await axios.post(
-          `${this.baseUrl}/links/refresh`,
-          {
-            id,
+        const response = await axios.put(`${this.baseUrl}/links/refresh/${id}`, {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
           },
-          {
-            headers: {
-              authorization: this.ApiKey,
-              token: userToken,
-            },
-          }
-        )
+        })
         return response.data
       } catch (error) {
         return error
@@ -166,15 +154,11 @@ class MerklebaseAPI implements IMerklebase {
     generate: {
       ed25519: async () => {
         try {
-          const response = await axios.post(
-            `${this.baseUrl}/links/generate/ed25519`,
-            {},
-            {
-              headers: {
-                authorization: this.ApiKey,
-              },
-            }
-          )
+          const response = await axios.get(`${this.baseUrl}/links/generate/ed25519`, {
+            headers: {
+              authorization: this.ApiKey,
+            },
+          })
           return response.data
         } catch (error) {
           return error
@@ -182,15 +166,11 @@ class MerklebaseAPI implements IMerklebase {
       },
       rsacsr: async () => {
         try {
-          const response = await axios.post(
-            `${this.baseUrl}/links/generate/rsacsr`,
-            {},
-            {
-              headers: {
-                authorization: this.ApiKey,
-              },
-            }
-          )
+          const response = await axios.get(`${this.baseUrl}/links/generate/rsacsr`, {
+            headers: {
+              authorization: this.ApiKey,
+            },
+          })
           return response.data
         } catch (error) {
           return error
@@ -202,7 +182,7 @@ class MerklebaseAPI implements IMerklebase {
   balances: IBalances = {
     get: async (userToken: string) => {
       try {
-        const response = await axios.get(`${this.baseUrl}/balances/get`, {
+        const response = await axios.get(`${this.baseUrl}/balances`, {
           headers: {
             authorization: this.ApiKey,
             token: userToken,
@@ -218,7 +198,7 @@ class MerklebaseAPI implements IMerklebase {
   entities: IEntities = {
     get: async (userToken: string) => {
       try {
-        const response = await axios.get(`${this.baseUrl}/entities/get`, {
+        const response = await axios.get(`${this.baseUrl}/entities`, {
           headers: {
             authorization: this.ApiKey,
             token: userToken,
@@ -231,7 +211,7 @@ class MerklebaseAPI implements IMerklebase {
     },
     create: async (userToken: string, entity: IEntitiesParams) => {
       try {
-        const response = await axios.post(`${this.baseUrl}/entities/create`, entity, {
+        const response = await axios.post(`${this.baseUrl}/entities`, entity, {
           headers: {
             authorization: this.ApiKey,
             token: userToken,
@@ -244,10 +224,9 @@ class MerklebaseAPI implements IMerklebase {
     },
     update: async (userToken: string, id: string, entity: IEntitiesParams) => {
       try {
-        const response = await axios.post(
-          `${this.baseUrl}/entities/update`,
+        const response = await axios.put(
+          `${this.baseUrl}/entities/${id}`,
           {
-            id,
             ...entity,
           },
           {
@@ -264,18 +243,12 @@ class MerklebaseAPI implements IMerklebase {
     },
     remove: async (userToken: string, id: string) => {
       try {
-        const response = await axios.post(
-          `${this.baseUrl}/entities/remove`,
-          {
-            id,
+        const response = await axios.delete(`${this.baseUrl}/entities/remove/${id}`, {
+          headers: {
+            authorization: this.ApiKey,
+            token: userToken,
           },
-          {
-            headers: {
-              authorization: this.ApiKey,
-              token: userToken,
-            },
-          }
-        )
+        })
         return response.data
       } catch (error) {
         return error
@@ -303,7 +276,7 @@ class MerklebaseAPI implements IMerklebase {
     create: async () => {
       try {
         const response = await axios.post(
-          `${this.baseUrl}/tokens/create`,
+          `${this.baseUrl}/tokens`,
           {},
           {
             headers: {
